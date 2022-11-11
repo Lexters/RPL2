@@ -1,21 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.toko.buku.view;
+
+import com.toko.buku.controller.TokoBukuController;
 
 /**
  *
  * @author Yoel
  */
 public class TokoBukuView extends javax.swing.JFrame {
+    public final TokoBukuController tokoBukuController = new TokoBukuController(this);
+    
 
     /**
      * Creates new form TokoBukuView
      */
     public TokoBukuView() {
         initComponents();
+        tokoBukuController.getAllData();
     }
 
     /**
@@ -33,9 +33,9 @@ public class TokoBukuView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtKode = new javax.swing.JTextField();
-        textNama = new javax.swing.JTextField();
-        textGenre = new javax.swing.JTextField();
-        textHarga = new javax.swing.JTextField();
+        txtNama = new javax.swing.JTextField();
+        txtGenre = new javax.swing.JTextField();
+        txtHarga = new javax.swing.JTextField();
         btn_save = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
         btn_delete = new javax.swing.JButton();
@@ -57,12 +57,32 @@ public class TokoBukuView extends javax.swing.JFrame {
         jLabel5.setText("Harga");
 
         btn_save.setText("Save");
+        btn_save.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_saveMouseClicked(evt);
+            }
+        });
 
         btn_update.setText("Update");
+        btn_update.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_updateMouseClicked(evt);
+            }
+        });
 
         btn_delete.setText("Delete");
+        btn_delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_deleteMouseClicked(evt);
+            }
+        });
 
         btn_clear.setText("Clear");
+        btn_clear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_clearMouseClicked(evt);
+            }
+        });
 
         tblBuku.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,6 +95,11 @@ public class TokoBukuView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblBuku.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBukuMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblBuku);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -93,9 +118,9 @@ public class TokoBukuView extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtKode)
-                            .addComponent(textNama)
-                            .addComponent(textGenre)
-                            .addComponent(textHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNama)
+                            .addComponent(txtGenre)
+                            .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -127,15 +152,15 @@ public class TokoBukuView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(textNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(textGenre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtGenre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(textHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_save)
@@ -150,6 +175,31 @@ public class TokoBukuView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_saveMouseClicked
+        // TODO add your handling code here:
+        tokoBukuController.saveBuku();
+    }//GEN-LAST:event_btn_saveMouseClicked
+
+    private void btn_deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_deleteMouseClicked
+        // TODO add your handling code here:
+        tokoBukuController.deleteBuku();
+    }//GEN-LAST:event_btn_deleteMouseClicked
+
+    private void btn_updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_updateMouseClicked
+        // TODO add your handling code here:
+        tokoBukuController.updateBuku();
+    }//GEN-LAST:event_btn_updateMouseClicked
+
+    private void btn_clearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_clearMouseClicked
+        // TODO add your handling code here:
+        tokoBukuController.clear();
+    }//GEN-LAST:event_btn_clearMouseClicked
+
+    private void tblBukuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBukuMouseClicked
+        // TODO add your handling code here:
+        tokoBukuController.getData();
+    }//GEN-LAST:event_tblBukuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -198,9 +248,44 @@ public class TokoBukuView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblBuku;
-    private javax.swing.JTextField textGenre;
-    private javax.swing.JTextField textHarga;
-    private javax.swing.JTextField textNama;
+    private javax.swing.JTextField txtGenre;
+    private javax.swing.JTextField txtHarga;
     private javax.swing.JTextField txtKode;
+    private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the tblBuku
+     */
+    public javax.swing.JTable getTblBuku() {
+        return tblBuku;
+    }
+
+    /**
+     * @return the textGenre
+     */
+    public javax.swing.JTextField getTxtGenre() {
+        return txtGenre;
+    }
+
+    /**
+     * @return the textHarga
+     */
+    public javax.swing.JTextField getTxtHarga() {
+        return txtHarga;
+    }
+
+    /**
+     * @return the textNama
+     */
+    public javax.swing.JTextField getTxtNama() {
+        return txtNama;
+    }
+
+    /**
+     * @return the txtKode
+     */
+    public javax.swing.JTextField getTxtKode() {
+        return txtKode;
+    }
 }
