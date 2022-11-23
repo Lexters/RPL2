@@ -74,7 +74,7 @@ public class TokoBukuController {
             if(option == JOptionPane.YES_OPTION){
                 try{
                     tokoBukuDao.delete(tokoBuku);
-                    JOptionPane.showMessageDialog(null, "Berhasil menghapus Bunga", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Berhasil menghapus Buku", "Success", JOptionPane.INFORMATION_MESSAGE);
                     clear();
                     getAllData();
                 }catch(Exception e){
