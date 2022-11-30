@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.toko.buku.service;
 
 import com.toko.buku.dao.TokoBukuDao;
@@ -17,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Yoel
  */
 @Service("TokoBukuService")
-@Transactional(readOnly = true)
+@Transactional
 public class TokoBukuServiceImpl implements TokoBukuService {
     @Autowired
     private TokoBukuDao tokoBukuDao;
